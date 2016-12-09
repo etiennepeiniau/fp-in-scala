@@ -361,4 +361,50 @@ class Exercises3Spec extends FlatSpec {
     assert(depth(Branch(Leaf(3), Branch(Leaf(1), Leaf(6)))) == 3)
   }
 
+  // exercise 3.28
+
+  "mapTree of Leaf(3) and (2 * _)" should "return Leaf(6)" in {
+    assert(mapTree(Leaf(3))(2 * _) == Leaf(6))
+  }
+
+  "mapTree of Branch(Leaf(3), Branch(Leaf(1),Leaf(6))) and (2 * _)" should "return Branch(Leaf(6), Branch(Leaf(2),Leaf(12)))" in {
+    assert(mapTree(Branch(Leaf(3), Branch(Leaf(1), Leaf(6))))(2 * _) == Branch(Leaf(6), Branch(Leaf(2), Leaf(12))))
+  }
+
+  // exercise 3.29
+
+  "foldSize of Leaf(1)" should "return 1" in {
+    assert(foldSize(Leaf(1)) == 1)
+  }
+
+  "foldSize of Branch(Leaf(1), Branch(Leaf(1),Leaf(1)))" should "return 5" in {
+    assert(foldSize(Branch(Leaf(1), Branch(Leaf(1), Leaf(1)))) == 5)
+  }
+
+  "foldMaximum of Leaf(3)" should "return 3" in {
+    assert(foldMaximum(Leaf(3)) == 3)
+  }
+
+  "foldMaximum of Branch(Leaf(3), Branch(Leaf(1),Leaf(6)))" should "return 6" in {
+    assert(foldMaximum(Branch(Leaf(3), Branch(Leaf(1), Leaf(6)))) == 6)
+  }
+
+  // exercise 3.27
+
+  "foldDepth of Leaf(3)" should "return 1" in {
+    assert(foldDepth(Leaf(3)) == 1)
+  }
+
+  "foldDepth of Branch(Leaf(3), Branch(Leaf(1),Leaf(6)))" should "return 3" in {
+    assert(foldDepth(Branch(Leaf(3), Branch(Leaf(1), Leaf(6)))) == 3)
+  }
+
+  "foldMapTree of Leaf(3) and (2 * _)" should "return Leaf(6)" in {
+    assert(foldMapTree(Leaf(3))(2 * _) == Leaf(6))
+  }
+
+  "foldMapTree of Branch(Leaf(3), Branch(Leaf(1),Leaf(6))) and (2 * _)" should "return Branch(Leaf(6), Branch(Leaf(2),Leaf(12)))" in {
+    assert(foldMapTree(Branch(Leaf(3), Branch(Leaf(1), Leaf(6))))(2 * _) == Branch(Leaf(6), Branch(Leaf(2), Leaf(12))))
+  }
+
 }

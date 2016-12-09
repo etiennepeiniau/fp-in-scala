@@ -226,9 +226,32 @@ object Exercises3 {
       case Branch(l, r) => {
         val ldepth = 1 + depth(l)
         val rdepth = 1 + depth(r)
-        if(ldepth > rdepth) ldepth else rdepth
+        if (ldepth > rdepth) ldepth else rdepth
       }
     }
+
+    // exercise 3.28
+
+    def mapTree[A, B](t: Tree[A])(f: A => B): Tree[B] = t match {
+      case Leaf(v) => Leaf(f(v))
+      case Branch(l, r) => Branch(mapTree(l)(f), mapTree(r)(f))
+    }
+
+    // exercise 3.29
+
+    def fold[A, B](t: Tree[A])(f: A => B)(g: (B, B) => B): B = t match {
+      case Leaf(v) => f(v)
+      case Branch(l, r) => g(fold(l)(f)(g), fold(r)(f)(g))
+    }
+
+
+    def foldSize[A](t: Tree[A]): Int = fold(t)(a => 1)((b1, b2) => 1 + b1 + b2)
+
+    def foldMaximum(t: Tree[Int]): Int = fold(t)(a => a)((b1, b2) => b1 max b2)
+
+    def foldDepth(t: Tree[Int]): Int = fold(t)(a => 1)((b1, b2) => (1 + b1) max (1 + b2))
+
+    def foldMapTree[A, B](t: Tree[A])(f: A => B): Tree[B] = fold[A, Tree[B]](t)(a => Leaf(f(a)))((b1, b2) => Branch(b1, b2))
 
   }
 
