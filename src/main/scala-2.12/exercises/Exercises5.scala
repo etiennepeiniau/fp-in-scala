@@ -115,10 +115,7 @@ object Exercises5 {
     }
 
 
-    def zipWithUnflod[B, AA >: A](st: Stream[B])(f: (AA, B) => AA): Stream[AA] = Stream.unfold(this) {
-      case Cons(hd, tl) =>
-      case _ => Empty
-    }
+
 
 
   }
